@@ -79,4 +79,19 @@ router.get('/me', authenticate, async (req, res) => {
   });
 });
 
+router.get('/users', authenticate, async (req, res) => {
+  try {
+    const users = await User.find({}, 'name email role avatar_color').sort('name');
+    res.json(users.map(u => ({
+      id: u._id,
+      name: u.name,
+      email: u.email,
+      role: u.role,
+      avatarColor: u.avatar_color
+    })));
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching users' });
+  }
+});
+
 module.exports = router;
