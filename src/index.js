@@ -11,6 +11,7 @@ const userRoutes = require('./routes/users');
 const projectRoutes = require('./routes/projects');
 const taskRoutes = require('./routes/tasks');
 const dashboardRoutes = require('./routes/dashboard');
+const myTasksRoutes = require('./routes/mytasks');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -37,6 +38,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/projects/:projectId/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/my-tasks', myTasksRoutes);
 
 app.use((req, res) => res.status(404).json({ message: `Route ${req.method} ${req.url} not found` }));
 
