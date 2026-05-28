@@ -41,6 +41,7 @@ router.get('/', authenticate, async (req, res) => {
       projectId: t.project_id?._id,
       projectName: t.project_id?.name,
       projectColor: t.project_id?.color,
+      assigneeId: t.assignee_id?._id,
       assigneeName: t.assignee_id?.name,
       assigneeAvatarColor: t.assignee_id?.avatar_color,
       dueDate: t.due_date,
@@ -54,7 +55,7 @@ router.get('/', authenticate, async (req, res) => {
 
 router.post('/', authenticate, async (req, res) => {
   try {
-    const { title, description, status, priority, due_date } = req.body;
+    const { title, description, status, priority, due_date, assignee_id } = req.body;
     if (!title) return res.status(400).json({ message: 'Title is required' });
 
     const task = await Task.create({
@@ -64,7 +65,7 @@ router.post('/', authenticate, async (req, res) => {
       priority: priority || 'medium',
       due_date,
       created_by: req.user._id,
-      assignee_id: req.user._id
+      assignee_id: assignee_id || req.user._id
     });
     
     res.status(201).json({
@@ -73,6 +74,7 @@ router.post('/', authenticate, async (req, res) => {
       description: task.description,
       status: task.status,
       priority: task.priority,
+      assigneeId: task.assignee_id,
       dueDate: task.due_date,
       createdAt: task.createdAt
     });
@@ -97,6 +99,7 @@ router.put('/:taskId', authenticate, async (req, res) => {
       description: task.description,
       status: task.status,
       priority: task.priority,
+      assigneeId: task.assignee_id,
       dueDate: task.due_date,
       createdAt: task.createdAt
     });
