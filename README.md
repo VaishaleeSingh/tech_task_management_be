@@ -6,6 +6,11 @@ TaskFlow is a professional, full-stack task management application built for hig
 - **Frontend (Vercel):** [https://tech-task-management-fe.vercel.app/](https://tech-task-management-fe.vercel.app/)
 - **Backend (Render):** [https://tech-task-management-be.onrender.com](https://tech-task-management-be.onrender.com)
 
+### 🔐 Demo Credentials
+To explore the application with pre-populated dummy data, you can use the following accounts:
+- **Admin Account:** `admin@demo.com` / `demo1234`
+- **Member Account:** `member@demo.com` / `demo1234`
+
 ## 🛠️ Technology Stack
 - **Frontend:** React 18, Vite, Lucide React, Axios, React Router 6.
 - **Backend:** Node.js, Express, MongoDB (Mongoose), JWT, BcryptJS.
